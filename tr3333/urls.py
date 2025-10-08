@@ -1,11 +1,16 @@
 from django.contrib import admin
 from django.urls import path, include
+from . import views  # استدعاء الملف views من المشروع الرئيسي
 
 urlpatterns = [
     path('admin/', admin.site.urls),
 
-    # روابط التطبيقات
-    path('catalog/', include('catalog.urls')),      # روابط تطبيق المنتجات
-    path('orders/', include('orders.urls')),        # روابط تطبيق الطلبات
-    path('customers/', include('customers.urls')),  # روابط تطبيق العملاء
+    # الصفحة الرئيسية
+    path('', views.home_view, name='home'),
+
+    # تضمين مسارات التطبيقات الأخرى
+    path('customers/', include('customers.urls')),
+    path('catalog/', include('catalog.urls')),
+    path('orders/', include('orders.urls')),
 ]
+
